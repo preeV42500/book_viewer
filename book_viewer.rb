@@ -2,6 +2,16 @@ require "sinatra"
 require "sinatra/reloader"
 require "tilt/erubis"
 
+helpers do
+
+  def in_paragraphs(text)
+    text.split("\n\n").map do |line|
+      "<p>#{line}</p>"
+    end.join
+  end
+
+end
+
 before do
   @contents = File.readlines("data/toc.txt")
 end
